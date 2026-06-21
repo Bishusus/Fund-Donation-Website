@@ -1,0 +1,241 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+body{
+    min-height:100vh;
+}
+nav{
+  background-color: white;
+  box-shadow:3px 3px 5px rgba(0,0,0,0.1);
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+nav ul{
+  width:100%;
+  list-style:none;
+  display:flex;
+  justify-content:flex-end;
+  align-items: center;
+  padding:0;
+  margin:0;
+}
+nav li{
+  height:50px;
+  display: flex;
+  align-items: center;
+}
+nav a{
+  height:100%;
+  display:flex;
+  align-items:center;
+  color:black;
+  text-decoration:none;
+  padding: 0 30px;
+  transition: transform 0.3s ease;
+}
+nav a:hover{
+  background-color:#f0f0f0;
+  transform: scale(1.1);
+}
+.sidebar{
+  position:fixed;
+  top:0;
+  right:0;
+  height:100vh;
+  width:300px;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter:blur(10px);
+  z-index:999;
+  box-shadow: -10px 0 10px rgba(0,0,0,0.2);
+  display:none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.sidebar li{
+  width:100%;
+}
+.sidebar a{
+  width:100%;
+}
+.menu-button{
+  display:none;
+}
+@media(max-width:800px){
+  .hideOnMobile {
+    display: none;
+  }
+  .menu-button{
+  display:block;
+}
+}
+@media(max-width:400px){
+  .sidebar {
+    width:100%;
+  }
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  color: white;
+
+}
+.carousel-control-prev,
+.carousel-control-next {
+  filter: invert(100%);
+}
+.footer{
+  background-color: #f8f8f8;
+  padding:40px 0;
+  margin-top:50px;
+}
+.social{
+  text-align: center;
+  padding-bottom:10px;
+  color: #4b4c4d;
+}
+.social a{
+  font-size:25px;
+  color:inherit;
+  border:1px solid #4b4c4d;
+  width:40px;
+  height:40px;
+  line-height: 38px;
+  display:inline-block;
+  margin:0 15px;
+  border-radius: 50%;
+  text-align: center;
+  opacity: 0.8;
+}
+.social a:hover{
+  opacity: 1;
+  color: #fff;
+  background-color: #4b4c4d;
+}
+.list{
+  margin-top: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0;
+  text-align: center;
+  margin-left:35px;
+}
+.list li a{
+  color:inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.list li a:hover{
+  opacity: 1;
+}
+.list li{
+  display: inline-block;
+  padding: 0 10px;
+}
+.info p{
+  margin-top: 15px;
+  text-align: center;
+  font-size:13px;
+  color: #aaa;
+}
+.container1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   height: 10vh;
+   margin-top:30px;
+}
+.search-form {
+  width: 100%;
+  max-width: 800px;
+  height:60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 60px;
+  padding-left:20px;
+  display: flex;
+  align-items: center;
+  border:3px solid gray;
+  justify-content:space-between;
+   position:relative;
+}
+.search-form input {
+  flex: 1;
+  border:none;
+  background: transparent;
+  outline:none;
+  margin-right:10px;
+  margin-right:10px;
+
+}
+.search-form button img{
+  border-radius: 50%;
+  cursor: pointer;
+  height:65px;
+}
+.search-form button{
+  border:none;
+  border-radius:50%;
+  background:inherit;
+  padding:0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: auto;
+  width:auto;
+  margin-bottom:5px;
+  margin-left:5px;
+}
+#suggest {
+  position:absolute;
+  left:25%;
+  background-color:lightgray;
+  border:3px solid white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+  overflow-y:auto;
+  z-index: 100;
+  list-style: none;
+  padding:0;
+  padding-bottom:5px;
+  padding-top:10px;
+  width:700px;
+  overflow-x:hidden;
+}
+#suggest li{
+  padding-bottom:5px;
+}
+#suggest:empty{
+  display:none;
+}
+.last {
+  margin-top: 70px;
+}
+.final {
+  margin: 30px auto;
+  border-collapse: collapse;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  font-size: 20px;
+}
+thead th {
+  padding: 10px 50px;
+  background-color: rgb(203, 206, 210);
+  text-align: center;
+}
+tbody td {
+  padding: 10px 50px;
+  text-align: center;
+}
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:last-child {
+  border-bottom: 1px solid #ddd;
+}

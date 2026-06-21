@@ -1,0 +1,75 @@
+{% extends "layouts.html" %}
+{% block title %}
+    Log In
+{% endblock %}
+{% block main %}
+        <div class="container">
+        <form action="/login" method="post" class="contact">
+            <h2 style="text-align:center">Log In!</h2>
+            <div class="mb-3">
+                <label class="sign" for="email">Email:</label>
+                <input id="email" autocomplete="off" required autofocus class="form-control" name="email" type="email">
+            </div>
+            <div class="mb-3">
+                <label class="sign" for="password">Password:</label>
+                <input id="password" class="form-control" required name="password" type="password">
+                <p style="font-family: 'Poppins', sans-serif;">Forgot password?<a href="/reset">Reset</a></p>
+            </div>
+        <div class="text-center">
+    <button class="btn btn-primary" type="submit">Log In</button>
+     <p class="mt-2" style="font-family: 'Poppins', sans-serif;">Not logged in? <a href="/register">Sign Up</a></p>
+    </div>
+        </form>
+    </div>
+
+     <style>
+         body {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: lightgray;
+            margin-top: 80px;
+            padding: 20px;
+            padding-bottom:10px;
+            padding-top:15px;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .contact {
+            padding: 30px 20px 30px;
+            padding-bottom:0px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .btn {
+            width: 50%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 15px;
+            }
+            .btn {
+                width: 50%;
+                font-size: 1rem;
+            }
+        }
+
+        .sign {
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+{% endblock %}

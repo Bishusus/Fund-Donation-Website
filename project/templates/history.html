@@ -1,0 +1,32 @@
+{% extends "layouts.html" %}
+{% block title %}
+    History
+{% endblock %}
+{% block main %}
+<div class="section">
+    {% if history %}
+                <h1 style="text-align:center" class="last">History:</h2>
+                <table class="final">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Donation date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                            {% for histo in history %}
+                                <tr>
+                                    <td>{{histo.fund_name}}</td>
+                                    <td>{{histo.amount}}</td>
+                                    <td>{{histo.donated_at}}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+                {% if not history %}
+                     <p class="lead mt-5" style="text-align:center;">No records available</p>
+                {% endif %}
+            </div>
+{% endblock %}

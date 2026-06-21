@@ -1,0 +1,173 @@
+{% extends "layouts.html" %}
+{% block title %}
+  Homepage
+{% endblock %}
+{% block main %}
+<div id="carouselExampleDark" class="carousel carousel-dark slide m-0 p-0" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="0"
+      class="active"
+      aria-current="true"
+      aria-label="Slide 1"
+      style="background-color: darkgray;"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="1"
+      aria-label="Slide 2"
+      style="background-color: darkgray;"
+    ></button>
+    <button
+      type="button"
+      data-bs-target="#carouselExampleDark"
+      data-bs-slide-to="2"
+      aria-label="Slide 3"
+      style="background-color: darkgray;"
+    ></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="5000">
+      <img src="/static/help.jpg" style="height:600px; filter: brightness(70%);" class="d-block w-100" alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color: white;">Millions of lives have changed</h5>
+        <p style="color: white;">Our fund donation center has changed the lives of millions of people all over the world</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="5000">
+      <img src="/static/organizations.jpg" style="height:600px;filter: brightness(70%);" class="d-block w-100" alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color: white;">Countless organizations working collaboratively</h5>
+        <p style="color: white;">Collaborative efforts of countless organizations have improved the living status of millions of people</p>
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="5000">
+      <img src="/static/motivational.jpg" style="height:600px;filter: brightness(70%);" class="d-block w-100" alt="..." />
+      <div class="carousel-caption d-none d-md-block">
+        <h5 style="color: white;">You can make a difference</h5>
+        <p style="color: white;">Help us through your kidness and leave a positive impact in the world</p>
+      </div>
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleDark"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<section class="py-5 bg-light">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <div class="mb-4 mb-md-0">
+      <h1 class="fw-bold">We are GogoFundRaiser</h1>
+      <p class="lead" style="font-family:'Poppins', sans-serif;">GogoFundRaiser connects multiple organizations from
+      around the world acting as an important pillar of hope serving mankind and strengthening humanity.</p>
+      <a href="/donate" class="btn btn-success">Donate Now</a>
+    </div>
+    <img src="/static/helping-hand.jpg" class="img-fluid rounded" style="max-width: 450px;" alt="Helping hands">
+  </div>
+</section>
+<section class="py-5" style="background-color: #F9F4E3;">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">About GogoFundRaiser</h2>
+    <p class="lead">
+      GogoFundRaiser is a platform dedicated to bridging donors and verified organizations worldwide.
+      We believe in a future where help finds those who need it—fast, securely, and with impact.
+    </p>
+    <p>
+      Launched on 2000 AD,GogoFundRaiser has been working to solve various problems related to humanity for decades now.
+      Every year more and more lives are being saved due to the people that donate for a noble cause. Widely recognized all over the world, the
+      organization strongly believes each individual can help to some extent whether on a small or a big scale to solve the contemporary world issues.
+      Built with trust in mind, our mission is to simplify giving and amplify compassion.
+      Whether you're supporting disaster relief or education or poverty, every donation you make through GogoFundRaiser reaches those on the
+      frontlines of change.
+    </p>
+  </div>
+</section>
+<section class="py-5 bg-light">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+    <div class="mb-4 mb-md-0 text-center text-md-left">
+      <h3 class="fw-bold">Our Credibility</h3>
+      <p class="lead">We are proud to be recognized for our work in empowering people through our platform. Our partnerships and certifications reflect our commitment to excellence and trustworthiness.</p>
+    </div>
+    </section>
+  <div class="container mt-5">
+    <div class="row align-items-center">
+      <!-- Certificate Image -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="/static/iso.jpg" alt="GogoFundRaiser Certificate" class="img-fluid rounded shadow">
+      </div>
+
+      <!-- Certificate Text -->
+      <div class="col-md-6">
+        <h3 class="fw-bold">ISO 27001</h3>
+        <p>
+        GogoFundRaiser is officially recognized by global fundraising regulatory bodies, and proudly holds the
+        <strong>ISO/IEC 27001 certification</strong> — the international standard for information security management.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+  <div class="row align-items-center">
+
+    <!-- Certificate Text -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <h3 class="fw-bold">SSL Certified for Secure Donations</h3>
+      <p>
+        GogoFundRaiser is <strong>SSL certfied</strong> i.e. the user data is securely stored and transactional processes are done with encryption.
+      </p>
+    </div>
+
+    <!-- Certificate Image -->
+    <div class="col-md-6">
+      <img src="/static/ssl.jpg" alt="GogoFundRaiser Certificate" class="img-fluid rounded shadow">
+    </div>
+     <div class="container mt-5">
+    <div class="row align-items-center">
+      <!-- Certificate Image -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <img src="/static/charity.png" style="height:300px;" alt="GogoFundRaiser Certificate" class="img-fluid rounded shadow">
+      </div>
+
+      <!-- Certificate Text -->
+      <div class="col-md-6">
+        <h3 class="fw-bold">Charity Navigator Rating</h3>
+        <p>
+          GogoFundRaiser has received a <strong>4-Star</strong> Rating from Charity Navigator for our financial health, transparency, and accountability.
+        </p>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+ <section class="footer">
+      <div class="social">
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
+      </div>
+      <ul class="list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/donate">Donate</a></li>
+        <li><a href="/register">Sign Up</a></li>
+      </ul>
+      <div class="info">
+        <p>© 2000 GofoFundRaiser</p>
+    </section>
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends "layouts.html" %}
+{% block title %}
+  Donate 
+{% endblock %}
+{% block main %}
+<div class="container1">
+  <form action="/donate" method="post" class="search-form">
+    <input
+      autocomplete="off"
+      autofocus
+      name="fund"
+      placeholder="Name"
+      type="text"
+      value=""
+    />
+    <button><img src="/static/search.png" alt="search" /></button>
+  </form>
+</div>
+{% if funds %}
+<div id="hide" class="container mt-4">
+  <div class="row">
+    {% for fund in funds %}
+    <div class="col-md-12 mb-4">
+      <div class="card flex-row shadow-sm h-100">
+        <div class="col-md-4 p-0">
+          <img
+            src="{{ fund.image_url }}"
+            class="img-fluid h-100 w-100"
+            alt="{{ fund.name }}"
+            style="object-fit: cover"
+          />
+        </div>
+        <div
+          class="col-md-8 card-body d-flex flex-column justify-content-between"
+        >
+          <div>
+            <h5 class="card-title">{{ fund.name }}</h5>
+            <p class="card-text">{{ fund.description }}</p>
+          </div>
+          <a
+            href="#"
+            data-fund-id="{{fund.id}}"
+            data-fund-name="{{fund.name}}"
+            data-bs-toggle="modal"
+            data-bs-target="#donationModal"
+            class="btn btn-primary donate-button align-self-start mt-2"
+            >Donate</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+<div id="message" class="container text-center">
+{% if not funds %}
+  <p class="lead mt-5">No search result found.</p>
+  <p>Please try again.</p>
+{% endif %}
+</div>
+<div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Help us better the world!</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="valid" action="/validity" method="post">
+          <div class="mb-3">
+            <label for="recipient-email" class="col-form-label">Email:</label>
+            <input type="email" class="form-control" name="email" id="recipient-email" required>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-password" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" name="password" id="recipient-password" required>
+          </div>
+          <input type="hidden" name="fund_id" id="data_id">
+          <input type="hidden" name="fund_name" id="data_name">
+          <div class="mb-3">
+            <label for="recipient-confirmpassword" class="col-form-label">Confirm Password:</label>
+            <input type="password" class="form-control" name="confirm" id="recipient-confirmpassword" required>
+          </div>
+          <div class="mb-3">
+            <label for="recipient-credit" class="col-form-label">Credit Card No:</label>
+            <input type="text" class="form-control" name="credits" id="recipient-credit" required>
+            <p id="result"></p>
+          </div>
+           <div class="mb-3">
+            <label for="amount" class="col-form-label">Amount:</label>
+            <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" min="1" name="amount" step="0.01" class="form-control" id="amount" required>
+           </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" id="sub" class="btn btn-primary">Donate</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<ul id="suggest" style="list-style:none; text-align:center; cursor:pointer; "></ul>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let input = document.querySelector("input");
+    input.addEventListener("input", async function () {
+      let response = await fetch(
+        "/search?fund=" + encodeURIComponent(input.value)
+      );
+      let funds = await response.json();
+      let html = "";
+      for (let fund of funds) {
+        html += '<li class="suggestion-item">' + fund.name + "</li>";
+      }
+      const hidden = document.querySelector("#hide");
+      if (hidden){
+        hidden.style.display="none";
+      }
+      if (input.value.trim()=="")
+      {
+        if(hidden){
+        hidden.style.display="block";
+        }
+        document.querySelector("#suggest").innerHTML = "";
+        document.querySelector("#message").innerHTML = "";
+        document.querySelector("#suggest").style.boxShadow="none";
+        return;
+      }
+      if (html.length == 0){
+        document.querySelector("#suggest").innerHTML='';
+        document.querySelector("#suggest").boxShadow="none";
+        document.querySelector("#message").innerHTML=`<p class="lead mt-5">No search result found.</p>
+        <p>Please try again.</p>`;
+      }
+      else{
+        document.querySelector("#message").innerHTML='';
+        document.querySelector("#suggest").innerHTML=html;
+      }
+      document.querySelectorAll(".suggestion-item").forEach(function (item) {
+        item.addEventListener("click", function () {
+          input.value = item.textContent;
+          document.querySelector(".search-form").submit();
+        });
+      });
+    });
+   function validcredit(card_no){
+      let flaggy=false;
+      let sum=0;
+      for (i=card_no.length-1;i>=0;i--)
+      {
+        let digit=parseInt(card_no[i])
+        if(flaggy){
+          digit=digit*2;
+          if(digit>9){
+            digit -=9;
+          }
+        }
+        sum=sum+digit;
+        flaggy=!flaggy;
+      }
+      return sum % 10==0;
+   }
+   document.querySelector("#recipient-credit").addEventListener("input",function(){
+      const input = document.querySelector("#recipient-credit");
+      const cleaned = input.value.replace(/\D/g, "");
+      const result=document.querySelector("#result");
+      const submitButton = document.querySelector("#sub");
+      submitButton.disabled=true;
+      if (cleaned.length<4){
+        result.innerHTML="";
+        return;
+      }
+      const valid=validcredit(cleaned)
+      if(valid){
+      if(cleaned.startsWith("4") && (cleaned.length==13 || cleaned.length==16))
+      {
+        result.textContent="VISA";
+      }
+      else if((cleaned.startsWith("51") || cleaned.startsWith("52") || cleaned.startsWith("53") || cleaned.startsWith("54")
+       || cleaned.startsWith("55")) && cleaned.length==16)
+      {
+        result.textContent="MASTERCARD";
+      }
+      else if((cleaned.startsWith("34") || cleaned.startsWith("37")) && cleaned.length==15){
+        result.textContent="AMEX";
+      }
+       submitButton.disabled=false;
+    }
+      else{
+        result.textContent="INVALID";
+        submitButton.disabled=true;
+      }
+   });
+   document.querySelectorAll(".donate-button").forEach(function(button){
+    button.addEventListener("click",function(){
+    document.getElementById("data_id").value=button.dataset.fundId;
+    document.getElementById("data_name").value=button.dataset.fundName;
+   });
+  });
+});
+</script>
+{% endblock %}
